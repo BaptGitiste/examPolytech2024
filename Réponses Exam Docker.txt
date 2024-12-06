@@ -11,3 +11,38 @@ Le cours était très intéressant, le fais qu'on mette directement en applicati
 https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
 
+
+
+Liste des commandes :
+
+- docker run --rm -v "${PWD}:/app" -w /app maven:3.6.3-jdk-8 mvn clean package -DskipTests
+Ici on compile le front dans un conteneur en java 8 car on a java 21. Le -Dskiptests permet de ne pas faire les tests et d'éviter certaines erreurs.
+
+- ls target/
+(on voit bien notre .jar
+    Répertoire : C:\Users\bapti\Desktop\polytech\Docker\contrôle\examPolytech2024\java\target
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        06/12/2024     16:40                classes
+d-----        06/12/2024     16:39                generated-sources
+d-----        06/12/2024     16:40                generated-test-sources
+d-----        06/12/2024     16:41                maven-archiver
+d-----        06/12/2024     16:39                maven-status
+d-----        06/12/2024     16:40                test-classes
+-a----        06/12/2024     16:42      135512299 java-0.0.1-SNAPSHOT.jar
+-a----        06/12/2024     16:41       38010463 java-0.0.1-SNAPSHOT.jar.original
+
+
+- docker build -t java:baptiste .
+
+- docker images
+PS C:\Users\bapti\Desktop\polytech\Docker\contrôle\examPolytech2024\java> docker images
+REPOSITORY                                              TAG           IMAGE ID       CREATED          SIZE
+java                                                    baptiste      b34759c7d515   27 seconds ago   220MB
+
+- docker run -d --rm -p 8448:8448 java:baptiste
+on peut tester que ca marche bien en allant sur http://localhost:8448/
+
+- docker-compose up --build
