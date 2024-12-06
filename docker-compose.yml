@@ -1,0 +1,59 @@
+version: "3.9"
+
+networks:
+  exam-network:
+
+volumes:
+  database-mysql-exam:
+
+services:
+  # base de données MySQL
+  db:
+    image: mysql:8
+    container_name: container_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password
+      MYSQL_DATABASE: exam_db
+      MYSQL_USER: exam_user
+      MYSQL_PASSWORD: user_password
+    networks:
+      - exam-network
+    volumes:
+      - database-mysql-exam:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+      start_interval: 3s
+
+  # backend 
+  backend:
+    image: java:baptiste
+    container_name: backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://container_mysql:3306/exam_db  
+      SPRING_DATASOURCE_USERNAME: exam_user
+      SPRING_DATASOURCE_PASSWORD: user_password
+      SPRING_PROFILES_ACTIVE: sql 
+    networks:
+      - exam-network
+    depends_on:
+      - db
+    ports:
+      - "8448:8448"
+
+  # frontend
+  angular-service:
+    build:
+      context: ./angular
+      dockerfile: Dockerfile
+    environment:
+      BACKEND_URL: "http://backend:8448"  
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - exam-network

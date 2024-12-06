@@ -1,0 +1,13 @@
+1. Qu'est-ce que Docker ?
+Docker est une plateforme de conteneurisation qui permet de créer,déployer et exécuter des applications isolées. le conteneur est léger et autonome, il contient toutes les dépendances nécessaires au projet permettant ainsi de le faire tourner sur n'importe quelle machine. Le docker est donc léger et isolé.
+
+2. Qu'est-ce que la CI/CD ?
+CI/CD signifie Intégration Continue et Déploiement Continu. Ce sont des pratiquent qui visent à automatiser les tests, les builds, et les déploiements notamment en utilisant git. L'objectif est d'améliorer le processus de développement de logiciel en assurant vitesse et fiabilité.
+
+3. Qu'avez-vous pensé du cours ?
+Le cours était très intéressant, le fais qu'on mette directement en application ce qu'on voyait dans le cours était la bonne pédagogie, je me suis bien amusé.
+
+4. Surprenez-moi : Ma chaine YouTube 
+https://www.youtube.com/watch?v=dQw4w9WgXcQ
+
+
